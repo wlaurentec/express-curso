@@ -1,26 +1,31 @@
 const express = require("express");
 const app = express();
 
-app.get("/products", (req, res) => {
-  res.send("Lista de productos");
-})
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-app.post("/products", (req, res) => {
-  res.send("Creando productos");
-})
+app.get("/data/miarchivo", (req, res) => {
+  res.sendFile(__dirname + "/luis-banchero.txt");
+});
 
-app.put("/products", (req, res) => {
-  res.send("Actualizando productos");
-})
+app.get("/data/lbr", (req, res) => {
+  res.sendFile("/lbr.json", { root: __dirname });
+});
 
-app.delete("/products", (req, res) => {
-  res.send("Eliminando productos");
-})
+app.get("/isAlive", (req, res) => {
+  res.send("I'm alive!");
+});
 
-app.patch("/products", (req, res) => {
-  res.send("Actulizando una parte del producto");
-})
-
+app.get("/user", (req, res) => {
+  res.json({
+    name: "Luis",
+    age: 25,
+    country: "Peru",
+    city: "Lima",
+    married: false,
+  });
+});
 
 app.listen(3000, () => {
   console.log(`Listening on http://localhost:${3000}`);
